@@ -28,5 +28,7 @@ urlpatterns = [
     path("create/", include("staff.urls")),
 ]
 
+handler404 = "app.views.error404" 
+handler500 = "app.views.error500" 
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

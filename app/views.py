@@ -8,3 +8,10 @@ def home(request):
 @login_required
 def profile(request):
     return redirect (reverse("app:home"))
+@login_required
+def error404 (request, exception):
+    return render (request, "app/404.html", status = 404 )
+
+@login_required
+def error500 (request):
+    return render (request, "app/500.html", status = 500)
