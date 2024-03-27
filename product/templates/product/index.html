@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block main %}
+<h2>Products page</h2>
+<div class="all_cards">
+
+    {% for item in products %}
+    <a href="{% url 'product:check' item.id %}">
+        <div class="card">
+            <div class="image_wrapper">
+                <img src="{{ item.image.url }}" alt="">
+            </div>
+            <p>{{ item.name }}</p>
+            <p>{{ item.quantity }} pcs </p>
+            <p> N {{ item.price }}</p>
+        </div>
+    </a>
+    
+    
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block main %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="n">Name</label><br>
+    <input type="text" id="n" name="name"><br><br>
+    <label for="d">Description</label><br>
+    <textarea name="description" id="" cols="30" rows="10"></textarea><br><br>
+    <label for="i">Image</label><br>
+    <input type="file" id="i" name="image"><br><br>
+    <label for="q">Quantity</label><br>
+    <input type="number" id="q" name="quantity"><br><br>
+    <label for="p">Price</label><br>
+    <input type="number" id="p" name="price"><br><br>
+
+    <button>Submit</button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<form method="post">
+    <label for="">Name:</label><br>
+    <input type="text"><br><br>
+    <label for="">Address:</label><br>
+    <input type="text"><br><br>
+    <label for="">State:</label><br>
+    <input type="text"><br><br>
+    <label for="">Lga:</label><br>
+    <input type="text"><br><br>
+    <label for="">Phone Number:</label><br>
+    <input type="tel"><br><br>
+    <label for="">Quantity:</label><br>
+    <input type="number" id="pc" value="1"><br><br>
+    <p>Quantity Available : <span id="qa">{{ product.quantity }}</span></p>
+    <p>Unit Price <span id="up">{{ product.price }}</span></p>
+
+     <button>Make payment</button>
+</form>
+<p>Total Price: <span id="tp">{{ product.price }}</span></p>
+
+
+<script>
+    const up = parseFloat(document.getElementById("up").innerText)
+    const allInputs = document.querySelectorAll("input")
+    for(let i = 0; i < allInputs.length; i++){
+        const imp = allInputs[i]
+        imp.addEventListener("keypress", (event) => {
+            if (event.keyCode === 13){
+                event.preventDefault()
+            }
+        })
+    }
+
+
+
+    // console.log(up)
+    function updateTp (){
+        const qtyTag = document.getElementById("pc")
+        const qa = parseInt(document.getElementById("qa").innerText)
+        let qty = parseInt(qtyTag.value)
+       
+        if (qty > qa){
+            qtyTag.value = qa
+            qty = qa
+        }
+        else if (qty < 1){
+            qtyTag.value = 1
+            qty = 1
+        }
+       document.getElementById("tp").innerText = qty * up
+    }
+    document.getElementById("pc").addEventListener("change", updateTp)
+</script>
+{% endblock %}

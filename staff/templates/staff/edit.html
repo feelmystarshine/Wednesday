@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block main %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="n">Name</label><br>
+    <input type="text" id="n" name="name" value="{{ product.name }}"><br><br>
+    <label for="d">Description</label><br>
+    <textarea name="description" id="" cols="30" rows="10" >{{ product.description }}</textarea ><br><br>
+    <label for="i">Image</label><br>
+    <input type="file" id="i" name="image"><br><a href="{{ product.image.url }}">"{{ product.image.url }}"</a><br>
+    <label for="q">Quantity</label><br>
+    <input type="number" id="q" name="quantity" value="{{ product.quantity }}"><br><br>
+    <label for="p">Price</label><br>
+    <input type="number" id="p" name="price" value="{{ product.price }}"><br><br>
+
+    <button>Submit</button><br>
+    
+
+</form>
+
+<a href="{% url 'staff:delete' product.id %}"><button>Delete</button></a>
+
+{% endblock %}
